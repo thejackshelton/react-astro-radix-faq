@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ';
+
 import illustrationShadow from '../../bg-pattern-mobile.svg?url';
 import illustrationWoman from '../../illustration-woman-online-mobile.svg?url';
+
 import shadowDesktop from '../../bg-pattern-desktop.svg?url';
 import womanDesktop from '../../illustration-woman-online-desktop.svg?url';
+import boxDesktop from '../../illustration-box-desktop.svg?url';
+
 import '@fontsource/kumbh-sans/400.css';
 import '@fontsource/kumbh-sans/700.css';
 ---
@@ -14,6 +18,7 @@ import '@fontsource/kumbh-sans/700.css';
     <div class="card">
       <div class="decoration-container">
         <div class="decoration">
+          <img class="illustration-box" src={boxDesktop} alt="" />
           <img class="illustration-woman-desktop" src={womanDesktop} alt="" />
           <img class="illustration-shadow-desktop" src={shadowDesktop} alt="" />
           <img
@@ -39,6 +44,25 @@ import '@fontsource/kumbh-sans/700.css';
 </Layout>
 
 <style>
+  :root {
+    --shadow-color: 249deg 57% 39%;
+    --shadow-elevation-low: 0.2px 0.4px 0.5px hsl(var(--shadow-color) / 0.34),
+      0.4px 0.6px 0.8px -1.2px hsl(var(--shadow-color) / 0.34),
+      0.9px 1.6px 2.1px -2.5px hsl(var(--shadow-color) / 0.34);
+    --shadow-elevation-medium: 0.2px 0.4px 0.5px hsl(var(--shadow-color) / 0.36),
+      0.7px 1.3px 1.7px -0.8px hsl(var(--shadow-color) / 0.36),
+      1.8px 3.2px 4.1px -1.7px hsl(var(--shadow-color) / 0.36),
+      4.3px 7.8px 10px -2.5px hsl(var(--shadow-color) / 0.36);
+    --shadow-elevation-high: 0.2px 0.4px 0.5px hsl(var(--shadow-color) / 0.34),
+      1.3px 2.3px 3px -0.4px hsl(var(--shadow-color) / 0.34),
+      2.3px 4.3px 5.5px -0.7px hsl(var(--shadow-color) / 0.34),
+      3.8px 7px 9px -1.1px hsl(var(--shadow-color) / 0.34),
+      6.1px 11.2px 14.3px -1.4px hsl(var(--shadow-color) / 0.34),
+      9.6px 17.5px 22.5px -1.8px hsl(var(--shadow-color) / 0.34),
+      14.6px 26.6px 34.1px -2.1px hsl(var(--shadow-color) / 0.34),
+      21.5px 39.2px 50.3px -2.5px hsl(var(--shadow-color) / 0.34);
+  }
+
   html {
     font-family: 'Kumbh Sans';
   }
@@ -70,6 +94,7 @@ import '@fontsource/kumbh-sans/700.css';
     padding-top: 3rem;
     padding-bottom: 3rem;
     max-width: calc(500rem / 16);
+    box-shadow: var(--shadow-elevation-medium);
   }
 
   .decoration-container {
@@ -106,11 +131,16 @@ import '@fontsource/kumbh-sans/700.css';
     display: none;
   }
 
+  .illustration-box {
+    display: none;
+  }
+
   @media (min-width: 64rem) {
     .card {
       max-width: calc(1000rem / 16);
       display: flex;
       overflow: hidden;
+      z-index: 1;
     }
 
     .heading-container {
@@ -121,23 +151,33 @@ import '@fontsource/kumbh-sans/700.css';
     .decoration-container {
       align-items: center;
       justify-content: center;
+      overflow: visible;
     }
 
     .decoration {
       width: 450px;
       transform: translateX(-20%);
+      position: relative;
+      left: -15px;
+      overflow: visible;
+      z-index: 3;
     }
 
     .illustration-shadow-desktop {
       display: revert;
       position: absolute;
-      top: -160px;
-      left: 0px;
-      width: 1000px;
+      top: -325px;
+      left: -375px;
+      width: 800px;
+
+      max-width: 964px;
+      z-index: 0;
     }
 
     .illustration-woman-desktop {
       display: revert;
+      position: relative;
+      z-index: 1;
     }
 
     .illustration-woman-mobile {
@@ -146,6 +186,18 @@ import '@fontsource/kumbh-sans/700.css';
 
     .illustration-shadow-mobile {
       display: none;
+    }
+
+    .illustration-box {
+      display: block;
+      position: absolute;
+      top: 115px;
+      left: 0px;
+      z-index: 2;
+    }
+
+    .faq-container {
+      transform: translateX(25px);
     }
   }
 </style>

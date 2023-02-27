@@ -2,7 +2,7 @@ import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import styles from './FAQ.module.css';
 import data from '../constants';
-import downArrow from '../../public/icon-arrow-down.svg';
+import downArrow from '../../public/icon-arrow-down.svg?url';
 
 function FAQ() {
   return (
